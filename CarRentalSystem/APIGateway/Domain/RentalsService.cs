@@ -168,13 +168,23 @@ public class RentalsService : IRentalsService
 
     public async Task CancelRent(string username, Guid rentalUid)
     {
-        var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
-        var carUid = rental.CarUid;
-        var paymentUid = rental.PaymentUid;
-        
-        var car = await _carsRepository.ReserveCar(carUid, true);
-        var canceledRental = await _rentalsRepository.ProcessRent(username, rentalUid, "CANCELED");
-        var canceledPayment = await _paymentsRepository.CancelAsync(paymentUid);
+        if (await _rentalsRepository.HealthCheckAsync())
+        {
+            var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
+            var carUid = rental.CarUid;
+            var paymentUid = rental.PaymentUid;
+
+            if (await _carsRepository.HealthCheckAsync())
+            {
+                await _carsRepository.ReserveCar(carUid, true);
+                await _rentalsRepository.ProcessRent(username, rentalUid, "CANCELED");
+
+                if (await _paymentsRepository.HealthCheckAsync())
+                {
+                    await _paymentsRepository.CancelAsync(paymentUid);
+                }
+            }
+        }
     }
 
     public async Task<bool> HealthCheckAsync()
