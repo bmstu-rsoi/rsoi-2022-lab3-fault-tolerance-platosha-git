@@ -142,7 +142,7 @@ public class RentalsService : IRentalsService
             {
                 await AddCarInfoAsync(rental.CarUid, response);
 
-                if (await _rentalsRepository.HealthCheckAsync())
+                if (await _paymentsRepository.HealthCheckAsync())
                 {
                     await AddPaymentInfoAsync(rental.PaymentUid, response);
                 }
