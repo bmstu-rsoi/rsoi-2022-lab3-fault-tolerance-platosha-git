@@ -85,7 +85,7 @@ namespace APIGateway.Controllers
         {
             if (!(await _rentalsService.HealthCheckAsync()))
             {
-                var response = new ExceptionResponse("Rentals service is unavailable!");
+                var response = new ExceptionResponse("Payment Service unavailable");
                 Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
                 return new ObjectResult(response);
             }
