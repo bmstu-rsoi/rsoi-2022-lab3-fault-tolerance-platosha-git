@@ -1,4 +1,4 @@
-﻿namespace ModelsDTO.Payments;
+﻿namespace ModelsDTO.Payments.Cancel;
 
 public interface CancelPayment
 {

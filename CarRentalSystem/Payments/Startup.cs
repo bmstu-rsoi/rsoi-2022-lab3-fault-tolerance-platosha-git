@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Payments.ModelsDB;
@@ -7,6 +8,7 @@ using Payments.Controllers;
 using Serilog;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using ModelsDTO.Payments.Cancel;
 
 namespace Payments
 {
@@ -39,6 +41,8 @@ namespace Payments
 
             AddDbContext(services, Configuration);
             AddLogging(services, Configuration);
+            
+            AddMassTransit(services, Configuration);
             
             services.AddScoped<IPaymentsRepository, PaymentsRepository>();
             services.AddScoped<PaymentsWebController>();
@@ -83,6 +87,29 @@ namespace Payments
             
             services.AddLogging(loggingBuilder =>
                 loggingBuilder.AddSerilog(logger: log, dispose: true));
+        }
+        
+        private static void AddMassTransit(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddOptions<RabbitMqTransportOptions>()
+                .BindConfiguration(nameof(RabbitMqTransportOptions));
+
+            services.AddMassTransit(cfg =>
+            {
+                cfg.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(configuration.GetValue<string>("EndpointPrefix"), false));
+                cfg.AddConsumer<PaymentConsumer>();
+         
+                cfg.ConfigureHealthCheckOptions(x =>
+                {
+                    x.FailureStatus = HealthStatus.Degraded;
+                });
+            
+                cfg.UsingRabbitMq((context, config) =>
+                {
+                    config.UseBsonSerializer();
+                    config.ConfigureEndpoints(context);
+                });
+            });
         }
     }
 }

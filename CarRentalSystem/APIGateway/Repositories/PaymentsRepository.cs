@@ -2,6 +2,7 @@
 using MassTransit;
 using Microsoft.Extensions.Options;
 using ModelsDTO.Payments;
+using ModelsDTO.Payments.Cancel;
 
 namespace APIGateway;
 

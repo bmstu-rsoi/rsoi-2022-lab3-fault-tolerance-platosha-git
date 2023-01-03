@@ -367,3 +367,320 @@ LIMIT 1
 2023-01-03 23:33:35.025 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
 2023-01-03 23:33:35.026 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/0576b43a-ebc4-4282-a2e3-a8c9e8043562/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 5.4690ms
 2023-01-03 23:33:47.537 +03:00 [INF] Application is shutting down...
+2023-01-04 00:26:46.694 +03:00 [INF] Now listening on: http://[::]:8060
+2023-01-04 00:26:46.708 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-01-04 00:26:46.709 +03:00 [INF] Hosting environment: Development
+2023-01-04 00:26:46.709 +03:00 [INF] Content root path: C:\Users\plato\OneDrive\Рабочий стол\BMSTU\1m sem\rsoi-2022-lab3-fault-tolerance-platosha-git\CarRentalSystem\Rentals
+2023-01-04 00:26:47.288 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/swagger/index.html - -
+2023-01-04 00:26:47.494 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/swagger/index.html - - - 200 - text/html;charset=utf-8 210.0150ms
+2023-01-04 00:26:47.713 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/swagger/v1/swagger.json - -
+2023-01-04 00:26:47.896 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 182.5719ms
+2023-01-04 00:29:30.924 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:29:30.953 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:29:32.291 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:29:32.292 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 1367.9551ms
+2023-01-04 00:29:34.677 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8060/api/v1/rental/ application/json;+charset=utf-8 -
+2023-01-04 00:29:34.678 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.CreateRental (Rentals)'
+2023-01-04 00:29:34.707 +03:00 [INF] Route matched with {action = "CreateRental", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRental(ModelsDTO.Rentals.RentalsDTO) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:29:35.177 +03:00 [INF] Executed DbCommand (65ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM rental AS r
+2023-01-04 00:29:35.336 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?', @p7='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO rental (id, car_uid, date_from, date_to, payment_uid, rental_uid, status, username)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2023-01-04 00:29:35.355 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:29:35.370 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.CreateRental (Rentals) in 657.6779ms
+2023-01-04 00:29:35.371 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.CreateRental (Rentals)'
+2023-01-04 00:29:35.372 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8060/api/v1/rental/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 695.2489ms
+2023-01-04 00:29:35.589 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:29:35.590 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:29:35.694 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:29:35.695 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 105.2294ms
+2023-01-04 00:29:35.700 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/7d712b99-8ef2-4c69-832c-d602b43ea592/?X-User-Name=Test+Max - -
+2023-01-04 00:29:35.701 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:29:35.704 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:29:35.813 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:29:35.820 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:29:35.820 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 116.5556ms
+2023-01-04 00:29:35.820 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:29:35.820 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/7d712b99-8ef2-4c69-832c-d602b43ea592/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 120.4090ms
+2023-01-04 00:29:36.041 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/?X-User-Name=Test+Max - -
+2023-01-04 00:29:36.042 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalsByUsername (Rentals)'
+2023-01-04 00:29:36.045 +03:00 [INF] Route matched with {action = "GetRentalsByUsername", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalsByUsername(System.String) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:29:36.063 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0
+ORDER BY r.id
+2023-01-04 00:29:36.065 +03:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[ModelsDTO.Rentals.RentalsDTO, ModelsDTO, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2023-01-04 00:29:36.067 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalsByUsername (Rentals) in 21.4824ms
+2023-01-04 00:29:36.067 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalsByUsername (Rentals)'
+2023-01-04 00:29:36.067 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 25.7389ms
+2023-01-04 00:29:36.524 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/7d712b99-8ef2-4c69-832c-d602b43ea592/?X-User-Name=Test+Max - -
+2023-01-04 00:29:36.524 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:29:36.525 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:29:36.529 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:29:36.529 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:29:36.529 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 4.784ms
+2023-01-04 00:29:36.529 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:29:36.530 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/7d712b99-8ef2-4c69-832c-d602b43ea592/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 5.6138ms
+2023-01-04 00:29:36.542 +03:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:8060/api/v1/rental/Test Max/7d712b99-8ef2-4c69-832c-d602b43ea592/CANCELED - 0
+2023-01-04 00:29:36.542 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.FinishRent (Rentals)'
+2023-01-04 00:29:36.544 +03:00 [INF] Route matched with {action = "FinishRent", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FinishRent(System.String, System.Guid, System.String) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:29:36.547 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:29:36.556 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p7='?' (DbType = Int32), @p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (DbType = Guid), @p5='?', @p6='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE rental SET car_uid = @p0, date_from = @p1, date_to = @p2, payment_uid = @p3, rental_uid = @p4, status = @p5, username = @p6
+WHERE id = @p7;
+2023-01-04 00:29:36.558 +03:00 [INF] +RentalsRep : Rental 31 was patched at Rentals
+2023-01-04 00:29:36.558 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:29:36.558 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.FinishRent (Rentals) in 13.8457ms
+2023-01-04 00:29:36.558 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.FinishRent (Rentals)'
+2023-01-04 00:29:36.559 +03:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:8060/api/v1/rental/Test Max/7d712b99-8ef2-4c69-832c-d602b43ea592/CANCELED - 0 - 200 - application/json;+charset=utf-8 16.7943ms
+2023-01-04 00:29:36.886 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:29:36.886 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:29:36.948 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:29:36.948 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 61.8873ms
+2023-01-04 00:29:36.952 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/7d712b99-8ef2-4c69-832c-d602b43ea592/?X-User-Name=Test+Max - -
+2023-01-04 00:29:36.952 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:29:36.952 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:29:36.954 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:29:36.955 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:29:36.955 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 2.4096ms
+2023-01-04 00:29:36.955 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:29:36.955 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/7d712b99-8ef2-4c69-832c-d602b43ea592/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 3.1135ms
+2023-01-04 00:29:37.310 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:29:37.311 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:29:37.369 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:29:37.369 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 58.6665ms
+2023-01-04 00:29:37.448 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8060/api/v1/rental/ application/json;+charset=utf-8 -
+2023-01-04 00:29:37.448 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.CreateRental (Rentals)'
+2023-01-04 00:29:37.449 +03:00 [INF] Route matched with {action = "CreateRental", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRental(ModelsDTO.Rentals.RentalsDTO) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:29:37.451 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM rental AS r
+2023-01-04 00:29:37.452 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?', @p7='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO rental (id, car_uid, date_from, date_to, payment_uid, rental_uid, status, username)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2023-01-04 00:29:37.453 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:29:37.453 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.CreateRental (Rentals) in 4.3137ms
+2023-01-04 00:29:37.453 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.CreateRental (Rentals)'
+2023-01-04 00:29:37.453 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8060/api/v1/rental/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 4.7764ms
+2023-01-04 00:29:37.537 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/0c458684-e61a-4b66-b11b-38b81205e1a0/?X-User-Name=Test+Max - -
+2023-01-04 00:29:37.537 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:29:37.538 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:29:37.539 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:29:37.540 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:29:37.540 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 2.3614ms
+2023-01-04 00:29:37.540 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:29:37.540 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/0c458684-e61a-4b66-b11b-38b81205e1a0/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 3.1013ms
+2023-01-04 00:29:37.548 +03:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:8060/api/v1/rental/Test Max/0c458684-e61a-4b66-b11b-38b81205e1a0/FINISHED - 0
+2023-01-04 00:29:37.549 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.FinishRent (Rentals)'
+2023-01-04 00:29:37.549 +03:00 [INF] Route matched with {action = "FinishRent", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FinishRent(System.String, System.Guid, System.String) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:29:37.551 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:29:37.553 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p7='?' (DbType = Int32), @p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (DbType = Guid), @p5='?', @p6='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE rental SET car_uid = @p0, date_from = @p1, date_to = @p2, payment_uid = @p3, rental_uid = @p4, status = @p5, username = @p6
+WHERE id = @p7;
+2023-01-04 00:29:37.553 +03:00 [INF] +RentalsRep : Rental 32 was patched at Rentals
+2023-01-04 00:29:37.553 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:29:37.553 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.FinishRent (Rentals) in 4.371ms
+2023-01-04 00:29:37.553 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.FinishRent (Rentals)'
+2023-01-04 00:29:37.554 +03:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:8060/api/v1/rental/Test Max/0c458684-e61a-4b66-b11b-38b81205e1a0/FINISHED - 0 - 200 - application/json;+charset=utf-8 5.1704ms
+2023-01-04 00:29:37.616 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:29:37.617 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:29:37.667 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:29:37.667 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 50.5704ms
+2023-01-04 00:29:37.669 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/0c458684-e61a-4b66-b11b-38b81205e1a0/?X-User-Name=Test+Max - -
+2023-01-04 00:29:37.669 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:29:37.670 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:29:37.672 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:29:37.672 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:29:37.672 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 2.1509ms
+2023-01-04 00:29:37.672 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:29:37.672 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/0c458684-e61a-4b66-b11b-38b81205e1a0/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 3.4570ms
+2023-01-04 00:30:15.216 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:30:15.217 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:30:15.292 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:30:15.293 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 76.5427ms
+2023-01-04 00:30:15.413 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8060/api/v1/rental/ application/json;+charset=utf-8 -
+2023-01-04 00:30:15.414 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.CreateRental (Rentals)'
+2023-01-04 00:30:15.414 +03:00 [INF] Route matched with {action = "CreateRental", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRental(ModelsDTO.Rentals.RentalsDTO) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:30:15.417 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM rental AS r
+2023-01-04 00:30:15.420 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?', @p7='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO rental (id, car_uid, date_from, date_to, payment_uid, rental_uid, status, username)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2023-01-04 00:30:15.420 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:30:15.421 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.CreateRental (Rentals) in 6.9145ms
+2023-01-04 00:30:15.421 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.CreateRental (Rentals)'
+2023-01-04 00:30:15.421 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8060/api/v1/rental/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 7.8826ms
+2023-01-04 00:30:19.906 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/a2f328b5-63bc-4b20-bc0f-4254360e2fcf/?X-User-Name=Test+Max - -
+2023-01-04 00:30:19.906 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:30:19.907 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:30:19.911 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:30:19.911 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:30:19.912 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 5.1343ms
+2023-01-04 00:30:19.912 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:30:19.912 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/a2f328b5-63bc-4b20-bc0f-4254360e2fcf/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 6.4449ms
+2023-01-04 00:30:19.922 +03:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:8060/api/v1/rental/Test Max/a2f328b5-63bc-4b20-bc0f-4254360e2fcf/CANCELED - 0
+2023-01-04 00:30:19.923 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.FinishRent (Rentals)'
+2023-01-04 00:30:19.923 +03:00 [INF] Route matched with {action = "FinishRent", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FinishRent(System.String, System.Guid, System.String) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:30:19.925 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:30:19.928 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@p7='?' (DbType = Int32), @p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (DbType = Guid), @p5='?', @p6='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE rental SET car_uid = @p0, date_from = @p1, date_to = @p2, payment_uid = @p3, rental_uid = @p4, status = @p5, username = @p6
+WHERE id = @p7;
+2023-01-04 00:30:19.929 +03:00 [INF] +RentalsRep : Rental 33 was patched at Rentals
+2023-01-04 00:30:19.929 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:30:19.929 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.FinishRent (Rentals) in 6.2627ms
+2023-01-04 00:30:19.929 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.FinishRent (Rentals)'
+2023-01-04 00:30:19.929 +03:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:8060/api/v1/rental/Test Max/a2f328b5-63bc-4b20-bc0f-4254360e2fcf/CANCELED - 0 - 200 - application/json;+charset=utf-8 7.1872ms
+2023-01-04 00:30:32.365 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:30:32.366 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:30:32.442 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:30:32.443 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 77.4605ms
+2023-01-04 00:30:32.447 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/a2f328b5-63bc-4b20-bc0f-4254360e2fcf/?X-User-Name=Test+Max - -
+2023-01-04 00:30:32.448 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:30:32.448 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:30:32.451 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:30:32.451 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:30:32.451 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 3.0589ms
+2023-01-04 00:30:32.451 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:30:32.451 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/a2f328b5-63bc-4b20-bc0f-4254360e2fcf/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 4.1007ms
+2023-01-04 00:30:58.610 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:30:58.610 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:30:58.683 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:30:58.683 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 72.8970ms
+2023-01-04 00:31:51.220 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:31:51.220 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:31:51.290 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:31:51.291 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 71.3028ms
+2023-01-04 00:31:53.511 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8060/api/v1/rental/ application/json;+charset=utf-8 -
+2023-01-04 00:31:53.512 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.CreateRental (Rentals)'
+2023-01-04 00:31:53.512 +03:00 [INF] Route matched with {action = "CreateRental", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] CreateRental(ModelsDTO.Rentals.RentalsDTO) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:31:53.514 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT count(*)::int
+FROM rental AS r
+2023-01-04 00:31:53.516 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = Guid), @p2='?' (DbType = DateTime), @p3='?' (DbType = DateTime), @p4='?' (DbType = Guid), @p5='?' (DbType = Guid), @p6='?', @p7='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO rental (id, car_uid, date_from, date_to, payment_uid, rental_uid, status, username)
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2023-01-04 00:31:53.517 +03:00 [INF] Executing CreatedResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:31:53.517 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.CreateRental (Rentals) in 4.9293ms
+2023-01-04 00:31:53.518 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.CreateRental (Rentals)'
+2023-01-04 00:31:53.518 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8060/api/v1/rental/ application/json;+charset=utf-8 - - 201 - application/json;+charset=utf-8 7.0887ms
+2023-01-04 00:31:58.419 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:31:58.419 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:31:58.490 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:31:58.491 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 71.8618ms
+2023-01-04 00:31:58.493 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/2394a407-3673-4bdc-8ab6-be7d8ae500f6/?X-User-Name=Test+Max - -
+2023-01-04 00:31:58.495 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:31:58.496 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:31:58.498 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:31:58.499 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:31:58.499 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 2.8765ms
+2023-01-04 00:31:58.499 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:31:58.499 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/2394a407-3673-4bdc-8ab6-be7d8ae500f6/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 6.1207ms
+2023-01-04 00:32:15.011 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/2394a407-3673-4bdc-8ab6-be7d8ae500f6/?X-User-Name=Test+Max - -
+2023-01-04 00:32:15.011 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:32:15.011 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:32:15.013 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:32:15.014 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:32:15.014 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 2.6614ms
+2023-01-04 00:32:15.014 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:32:15.014 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/2394a407-3673-4bdc-8ab6-be7d8ae500f6/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 3.2064ms
+2023-01-04 00:32:15.030 +03:00 [INF] Request starting HTTP/1.1 PATCH http://localhost:8060/api/v1/rental/Test Max/2394a407-3673-4bdc-8ab6-be7d8ae500f6/CANCELED - 0
+2023-01-04 00:32:15.030 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.FinishRent (Rentals)'
+2023-01-04 00:32:15.031 +03:00 [INF] Route matched with {action = "FinishRent", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] FinishRent(System.String, System.Guid, System.String) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:32:15.033 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:32:15.034 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p7='?' (DbType = Int32), @p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Guid), @p4='?' (DbType = Guid), @p5='?', @p6='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE rental SET car_uid = @p0, date_from = @p1, date_to = @p2, payment_uid = @p3, rental_uid = @p4, status = @p5, username = @p6
+WHERE id = @p7;
+2023-01-04 00:32:15.034 +03:00 [INF] +RentalsRep : Rental 34 was patched at Rentals
+2023-01-04 00:32:15.035 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:32:15.035 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.FinishRent (Rentals) in 3.997ms
+2023-01-04 00:32:15.035 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.FinishRent (Rentals)'
+2023-01-04 00:32:15.035 +03:00 [INF] Request finished HTTP/1.1 PATCH http://localhost:8060/api/v1/rental/Test Max/2394a407-3673-4bdc-8ab6-be7d8ae500f6/CANCELED - 0 - 200 - application/json;+charset=utf-8 4.6495ms
+2023-01-04 00:32:19.176 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:32:19.177 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:32:19.257 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:32:19.257 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 80.7732ms
+2023-01-04 00:32:19.260 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/2394a407-3673-4bdc-8ab6-be7d8ae500f6/?X-User-Name=Test+Max - -
+2023-01-04 00:32:19.261 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:32:19.261 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:32:19.264 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:32:19.264 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:32:19.265 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 3.5593ms
+2023-01-04 00:32:19.265 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:32:19.265 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/2394a407-3673-4bdc-8ab6-be7d8ae500f6/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 4.7980ms
+2023-01-04 00:33:21.920 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/manage/health - -
+2023-01-04 00:33:21.921 +03:00 [INF] Executing endpoint 'Health checks'
+2023-01-04 00:33:21.990 +03:00 [INF] Executed endpoint 'Health checks'
+2023-01-04 00:33:21.991 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/manage/health - - - 200 - text/plain 70.8361ms
+2023-01-04 00:33:21.994 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8060/api/v1/rental/2394a407-3673-4bdc-8ab6-be7d8ae500f6/?X-User-Name=Test+Max - -
+2023-01-04 00:33:21.995 +03:00 [INF] Executing endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:33:21.995 +03:00 [INF] Route matched with {action = "GetRentalByUid", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetRentalByUid(System.String, System.Guid) on controller Rentals.Controllers.RentalsAPIController (Rentals).
+2023-01-04 00:33:21.999 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@__username_0='?', @__RentalUid_1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT r.id, r.car_uid, r.date_from, r.date_to, r.payment_uid, r.rental_uid, r.status, r.username
+FROM rental AS r
+WHERE r.username = @__username_0 AND r.rental_uid = @__RentalUid_1
+LIMIT 1
+2023-01-04 00:33:22.000 +03:00 [INF] Executing OkObjectResult, writing value of type 'ModelsDTO.Rentals.RentalsDTO'.
+2023-01-04 00:33:22.001 +03:00 [INF] Executed action Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals) in 4.8637ms
+2023-01-04 00:33:22.001 +03:00 [INF] Executed endpoint 'Rentals.Controllers.RentalsAPIController.GetRentalByUid (Rentals)'
+2023-01-04 00:33:22.001 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8060/api/v1/rental/2394a407-3673-4bdc-8ab6-be7d8ae500f6/?X-User-Name=Test+Max - - - 200 - application/json;+charset=utf-8 6.9805ms
+2023-01-04 00:33:32.848 +03:00 [INF] Application is shutting down...
