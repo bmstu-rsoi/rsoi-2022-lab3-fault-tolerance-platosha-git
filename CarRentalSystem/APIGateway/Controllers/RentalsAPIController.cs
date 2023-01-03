@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Net.Mime;
+using System.Net.Sockets;
 using APIGateway.Domain;
 using APIGateway.ModelsDTO;
 using Microsoft.AspNetCore.Mvc;
@@ -98,9 +99,14 @@ namespace APIGateway.Controllers
             {
                 return NotFound(e.Message);
             }
+            catch (SocketException e)
+            {
+                _logger.LogError(e, "+RentalsAPIContoller: Service is unavailable!");
+                return Problem(statusCode: StatusCodes.Status503ServiceUnavailable);
+            }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error occurred trying BookCar!");
+                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying BookCar!");
                 throw;
             }
         }
