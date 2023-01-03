@@ -102,23 +102,6 @@ public class RentalsService : IRentalsService
         return rental;
     }
 
-    private void InitEmptyPaymentInfo(object obj)
-    {
-        foreach (var prop in obj.GetType()
-                     .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                     .Where(p => p.CanWrite))
-        {
-            var type = prop.PropertyType;
-            var constr = type.GetConstructor(Type.EmptyTypes); //find paramless const
-            if (type.IsClass && constr != null)
-            {
-                var propInst = Activator.CreateInstance(type);
-                prop.SetValue(obj, propInst, null);
-                InitEmptyPaymentInfo(propInst);
-            }
-        }
-    }
-    
     private async Task<CreateRentalResponse> AddPaymentInfoAsync(Guid paymentUid, CreateRentalResponse rental)
     {
         var payment = await _paymentsRepository.GetAsyncByUid(paymentUid);
@@ -166,8 +149,7 @@ public class RentalsService : IRentalsService
                 }
                 else
                 {
-                    response.Payment = new PaymentInfo();
-                    InitEmptyPaymentInfo(response.Payment);
+                    response.Payment = null;
                 }
             }
         }
