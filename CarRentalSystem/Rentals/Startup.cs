@@ -37,8 +37,10 @@ namespace Rentals
             services.AddSwaggerGenNewtonsoftSupport();
 
             AddDbContext(services, Configuration);
-            AddScoped(services);
             AddLogging(services, Configuration);
+            
+            services.AddScoped<IRentalsRepository, RentalsRepository>();
+            services.AddScoped<RentalsWebController>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,12 +72,6 @@ namespace Rentals
                 opt.UseNpgsql(config.GetConnectionString("Postgres")));
         }
 
-        private static void AddScoped(IServiceCollection services)
-        {
-            services.AddScoped<IRentalsRepository, RentalsRepository>();
-            services.AddScoped<RentalsWebController>();
-        }
-        
         private static void AddLogging(IServiceCollection services, IConfiguration config)
         {
             var logger = new LoggerConfiguration()
