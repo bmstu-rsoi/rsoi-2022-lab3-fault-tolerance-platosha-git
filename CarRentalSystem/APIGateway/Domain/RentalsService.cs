@@ -179,7 +179,9 @@ public class RentalsService : IRentalsService
 
     public async Task<bool> HealthCheckAsync()
     {
-        var response = await _rentalsRepository.HealthCheckAsync();
-        return response;
+        var responseCars = await _carsRepository.HealthCheckAsync();
+        var responseRentals = await _rentalsRepository.HealthCheckAsync();
+        var responsePayments = await _paymentsRepository.HealthCheckAsync();
+        return responseCars && responseRentals && responsePayments;
     }
 }

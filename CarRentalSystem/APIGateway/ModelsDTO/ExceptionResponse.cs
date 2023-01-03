@@ -1,4 +1,6 @@
-﻿namespace APIGateway.ModelsDTO;
+﻿using Newtonsoft.Json;
+
+namespace APIGateway.ModelsDTO;
 
 public class ExceptionResponse
 {
@@ -7,5 +9,6 @@ public class ExceptionResponse
         Message = message;
     }
     
+    [JsonProperty("Message")]
     public string Message { get; set; }
 }

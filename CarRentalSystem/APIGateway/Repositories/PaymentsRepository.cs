@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using System.Net;
+using Microsoft.Extensions.Options;
 using ModelsDTO.Payments;
 
 namespace APIGateway;
@@ -43,5 +44,19 @@ public class PaymentsRepository : IPaymentsRepository
         
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<PaymentInfo>();
+    }
+    
+    public async Task<bool> HealthCheckAsync()
+    {
+        try
+        {
+            var request = new HttpRequestMessage(HttpMethod.Get, $"manage/health");
+            var response = await _httpClient.SendAsync(request);
+            return (response.StatusCode == HttpStatusCode.OK);
+        }
+        catch (Exception e)
+        {
+            return false;
+        }
     }
 }

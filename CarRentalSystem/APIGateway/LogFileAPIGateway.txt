@@ -5589,3 +5589,51 @@ System.Net.Http.HttpRequestException: Подключение не установ
 2023-01-03 17:51:06.919 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/rental application/json 136 - 503 - application/json;+charset=utf-8 4231.8509ms
 2023-01-03 17:51:14.973 +03:00 [INF] Application is shutting down...
 2023-01-03 17:51:15.016 +03:00 [INF] Bus stopped: "rabbitmq://localhost/"
+2023-01-03 18:03:04.792 +03:00 [INF] Now listening on: http://[::]:8080
+2023-01-03 18:03:04.800 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-01-03 18:03:04.801 +03:00 [INF] Bus started: "rabbitmq://localhost/"
+2023-01-03 18:03:04.801 +03:00 [INF] Hosting environment: Development
+2023-01-03 18:03:04.802 +03:00 [INF] Content root path: C:\Users\plato\OneDrive\Рабочий стол\BMSTU\1m sem\rsoi-2022-lab3-fault-tolerance-platosha-git\CarRentalSystem\APIGateway
+2023-01-03 18:03:05.150 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/index.html - -
+2023-01-03 18:03:05.289 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/index.html - - - 200 - text/html;charset=utf-8 143.5668ms
+2023-01-03 18:03:05.432 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - -
+2023-01-03 18:03:05.579 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 146.6810ms
+2023-01-03 18:03:09.233 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/rental application/json 136
+2023-01-03 18:03:09.252 +03:00 [INF] Executing endpoint 'APIGateway.Controllers.RentalsAPIController.BookCar (APIGateway)'
+2023-01-03 18:03:09.275 +03:00 [INF] Route matched with {action = "BookCar", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] BookCar(System.String, APIGateway.ModelsDTO.CreateRentalRequest) on controller APIGateway.Controllers.RentalsAPIController (APIGateway).
+2023-01-03 18:03:09.329 +03:00 [INF] Start processing HTTP request GET http://localhost:8070/manage/health
+2023-01-03 18:03:09.334 +03:00 [INF] Sending HTTP request GET http://localhost:8070/manage/health
+2023-01-03 18:03:13.425 +03:00 [INF] Start processing HTTP request GET http://localhost:8060/manage/health
+2023-01-03 18:03:13.426 +03:00 [INF] Sending HTTP request GET http://localhost:8060/manage/health
+2023-01-03 18:03:17.503 +03:00 [INF] Start processing HTTP request GET http://localhost:8050/manage/health
+2023-01-03 18:03:17.503 +03:00 [INF] Sending HTTP request GET http://localhost:8050/manage/health
+2023-01-03 18:03:21.569 +03:00 [INF] Executing ObjectResult, writing value of type 'APIGateway.ModelsDTO.ExceptionResponse'.
+2023-01-03 18:03:21.581 +03:00 [INF] Executed action APIGateway.Controllers.RentalsAPIController.BookCar (APIGateway) in 12301.8882ms
+2023-01-03 18:03:21.581 +03:00 [INF] Executed endpoint 'APIGateway.Controllers.RentalsAPIController.BookCar (APIGateway)'
+2023-01-03 18:03:21.582 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/rental application/json 136 - 503 - application/json;+charset=utf-8 12348.8850ms
+2023-01-03 18:03:30.333 +03:00 [INF] Application is shutting down...
+2023-01-03 18:03:30.379 +03:00 [INF] Bus stopped: "rabbitmq://localhost/"
+2023-01-03 18:04:46.463 +03:00 [INF] Now listening on: http://[::]:8080
+2023-01-03 18:04:46.471 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2023-01-03 18:04:46.472 +03:00 [INF] Bus started: "rabbitmq://localhost/"
+2023-01-03 18:04:46.472 +03:00 [INF] Hosting environment: Development
+2023-01-03 18:04:46.474 +03:00 [INF] Content root path: C:\Users\plato\OneDrive\Рабочий стол\BMSTU\1m sem\rsoi-2022-lab3-fault-tolerance-platosha-git\CarRentalSystem\APIGateway
+2023-01-03 18:04:46.879 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/index.html - -
+2023-01-03 18:04:47.048 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/index.html - - - 200 - text/html;charset=utf-8 173.3107ms
+2023-01-03 18:04:47.202 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - -
+2023-01-03 18:04:47.336 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:8080/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 133.7910ms
+2023-01-03 18:04:50.999 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:8080/api/v1/rental application/json 136
+2023-01-03 18:04:51.018 +03:00 [INF] Executing endpoint 'APIGateway.Controllers.RentalsAPIController.BookCar (APIGateway)'
+2023-01-03 18:04:51.041 +03:00 [INF] Route matched with {action = "BookCar", controller = "RentalsAPI"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] BookCar(System.String, APIGateway.ModelsDTO.CreateRentalRequest) on controller APIGateway.Controllers.RentalsAPIController (APIGateway).
+2023-01-03 18:04:51.094 +03:00 [INF] Start processing HTTP request GET http://localhost:8070/manage/health
+2023-01-03 18:04:51.099 +03:00 [INF] Sending HTTP request GET http://localhost:8070/manage/health
+2023-01-03 18:04:55.171 +03:00 [INF] Start processing HTTP request GET http://localhost:8060/manage/health
+2023-01-03 18:04:55.171 +03:00 [INF] Sending HTTP request GET http://localhost:8060/manage/health
+2023-01-03 18:04:59.214 +03:00 [INF] Start processing HTTP request GET http://localhost:8050/manage/health
+2023-01-03 18:04:59.214 +03:00 [INF] Sending HTTP request GET http://localhost:8050/manage/health
+2023-01-03 18:05:03.281 +03:00 [INF] Executing ObjectResult, writing value of type 'APIGateway.ModelsDTO.ExceptionResponse'.
+2023-01-03 18:05:03.296 +03:00 [INF] Executed action APIGateway.Controllers.RentalsAPIController.BookCar (APIGateway) in 12249.8924ms
+2023-01-03 18:05:03.296 +03:00 [INF] Executed endpoint 'APIGateway.Controllers.RentalsAPIController.BookCar (APIGateway)'
+2023-01-03 18:05:03.297 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:8080/api/v1/rental application/json 136 - 503 - application/json;+charset=utf-8 12298.1170ms
+2023-01-03 18:05:10.632 +03:00 [INF] Application is shutting down...
+2023-01-03 18:05:10.686 +03:00 [INF] Bus stopped: "rabbitmq://localhost/"
