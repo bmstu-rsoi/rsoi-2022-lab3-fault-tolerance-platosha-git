@@ -5,6 +5,8 @@ using Rentals.ModelsDB;
 using Rentals.Repositories;
 using Rentals.Controllers;
 using Serilog;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
 namespace Rentals
 {
@@ -20,6 +22,9 @@ namespace Rentals
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks()
+                .AddCheck("self", () => HealthCheckResult.Healthy());
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -48,7 +53,15 @@ namespace Rentals
 
             app.UseRouting();
 
-            app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapHealthChecks("/manage/health");
+                endpoints.MapHealthChecks("/manage/health/liveness", new HealthCheckOptions
+                {
+                    Predicate = r => r.Name.Contains("self")
+                });
+            });
         }
         
         private static void AddDbContext(IServiceCollection services, IConfiguration config)
