@@ -44,6 +44,7 @@ services:
       - car-service
       - rental-service
       - payment-service
+      - rabbit
     healthcheck:
       test: "wget -nv -t1 --spider localhost:8080/manage/health/liveness"
 
@@ -89,6 +90,7 @@ services:
       - PORT=8050
     depends_on:
       - postgres
+      - rabbit
     healthcheck:
       test: "wget -nv -t1 --spider localhost:8050/manage/health/liveness"
 
