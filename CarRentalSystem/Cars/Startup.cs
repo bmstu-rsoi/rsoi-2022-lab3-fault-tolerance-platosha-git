@@ -23,7 +23,8 @@ namespace Cars
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks()
-                .AddCheck("self", () => HealthCheckResult.Healthy());
+                .AddCheck("self", () => HealthCheckResult.Healthy())
+                .AddDbContextCheck<CarsContext>();
             
             services.AddControllers();
             services.AddSwaggerGen(c =>

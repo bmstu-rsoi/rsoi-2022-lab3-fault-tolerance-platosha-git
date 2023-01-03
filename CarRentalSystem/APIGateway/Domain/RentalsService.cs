@@ -180,29 +180,20 @@ public class RentalsService : IRentalsService
         var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
         var carUid = rental.CarUid;
 
-        var car = await _carsRepository.ReserveCar(carUid, true);
-        var finishedRental = await _rentalsRepository.ProcessRent(username, rentalUid, "FINISHED");
+        await _carsRepository.ReserveCar(carUid, true);
+        await _rentalsRepository.ProcessRent(username, rentalUid, "FINISHED");
     }
 
     public async Task CancelRent(string username, Guid rentalUid)
     {
-        if (await _rentalsRepository.HealthCheckAsync())
-        {
-            var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
-            var carUid = rental.CarUid;
-            var paymentUid = rental.PaymentUid;
-
-            if (await _carsRepository.HealthCheckAsync())
-            {
-                await _carsRepository.ReserveCar(carUid, true);
-                await _rentalsRepository.ProcessRent(username, rentalUid, "CANCELED");
-
-                if (await _paymentsRepository.HealthCheckAsync())
-                {
-                    await _paymentsRepository.CancelAsync(paymentUid);
-                }
-            }
-        }
+        var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
+        
+        var carUid = rental.CarUid;
+        var paymentUid = rental.PaymentUid;
+            
+        await _carsRepository.ReserveCar(carUid, true);
+        await _rentalsRepository.ProcessRent(username, rentalUid, "CANCELED");
+        await _paymentsRepository.CancelAsync(paymentUid);
     }
 
     public async Task<bool> HealthCheckAsync()

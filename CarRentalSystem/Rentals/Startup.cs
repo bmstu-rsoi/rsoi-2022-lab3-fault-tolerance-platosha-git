@@ -8,6 +8,13 @@ using Serilog;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
+using System.Reflection;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
+
 namespace Rentals
 {
     public class Startup
@@ -23,7 +30,8 @@ namespace Rentals
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks()
-                .AddCheck("self", () => HealthCheckResult.Healthy());
+                .AddCheck("self", () => HealthCheckResult.Healthy())
+                .AddDbContextCheck<RentalContext>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

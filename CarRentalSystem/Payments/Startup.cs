@@ -23,7 +23,8 @@ namespace Payments
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddHealthChecks()
-                .AddCheck("self", () => HealthCheckResult.Healthy());
+                .AddCheck("self", () => HealthCheckResult.Healthy())
+                .AddDbContextCheck<PaymentContext>();
             
             services.AddControllers();
             services.AddSwaggerGen(c =>
