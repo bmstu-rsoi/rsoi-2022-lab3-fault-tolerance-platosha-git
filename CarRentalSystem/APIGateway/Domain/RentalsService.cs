@@ -131,10 +131,23 @@ public class RentalsService : IRentalsService
 
     public async Task<RentalResponse> GetAsyncByUid(string username, Guid rentalUid)
     {
-        var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
-        var response = GetRentalResponse(rental);
-        await AddCarInfoAsync(rental.CarUid, response);
-        await AddPaymentInfoAsync(rental.PaymentUid, response);
+        var response = new RentalResponse();
+        
+        if (await _rentalsRepository.HealthCheckAsync())
+        {
+            var rental = await _rentalsRepository.GetAsyncByUsernameAndRentalUid(username, rentalUid);
+            response = GetRentalResponse(rental);
+
+            if (await _carsRepository.HealthCheckAsync())
+            {
+                await AddCarInfoAsync(rental.CarUid, response);
+
+                if (await _rentalsRepository.HealthCheckAsync())
+                {
+                    await AddPaymentInfoAsync(rental.PaymentUid, response);
+                }
+            }
+        }
 
         return response;
     }
