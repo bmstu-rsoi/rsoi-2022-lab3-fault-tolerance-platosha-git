@@ -90,30 +90,25 @@ namespace APIGateway.Controllers
                 return new ObjectResult(response);
             }
 
-            return Ok();
-
-            // try
-            // {
-            //     if (!ModelState.IsValid)
-            //     {
-            //         return BadRequest(ModelState);
-            //     }
-            //
-            //     var response = await _rentalsService.RentCar(username, request);
-            //     return Ok(response);
-            // }
-            // catch (HttpRequestException e) when (e.StatusCode == HttpStatusCode.NotFound)
-            // {
-            //     return NotFound(e.Message);
-            // }
-            // catch (Exception e)
-            // {
-            //     _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying BookCar!");
-            //     //throw;
-            //     var response = new ExceptionResponse("Rentals service is unavailable!");
-            //     Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
-            //     return new ObjectResult(response);
-            // }
+            try
+            {
+                if (!ModelState.IsValid)
+                {
+                    return BadRequest(ModelState);
+                }
+            
+                var response = await _rentalsService.RentCar(username, request);
+                return Ok(response);
+            }
+            catch (HttpRequestException e) when (e.StatusCode == HttpStatusCode.NotFound)
+            {
+                return NotFound(e.Message);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying BookCar!");
+                throw;
+            }
         }
 
         /// <summary> Завершение аренды автомобиля </summary>
@@ -139,7 +134,7 @@ namespace APIGateway.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error occurred trying FinishBookCar!");
+                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying FinishBookCar!");
                 throw;
             }
         }
@@ -167,7 +162,7 @@ namespace APIGateway.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error occurred trying FinishBookCar!");
+                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying FinishBookCar!");
                 throw;
             }
         }
