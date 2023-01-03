@@ -10,4 +10,5 @@ public interface IRentalsRepository
     Task<RentalsDTO> GetAsyncByUsernameAndRentalUid(string username, Guid rentalUid);
     Task<RentalsDTO> CreateAsync(RentalsDTO rentalDTO);
     Task<RentalsDTO> ProcessRent(string username, Guid rentalUid, string status);
+    Task<bool> HealthCheckAsync();
 }

@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System.Net;
+using System.Web;
 using APIGateway.ModelsDTO;
 using Microsoft.AspNetCore.Mvc;
 using ModelsDTO.Cars;
@@ -174,5 +175,11 @@ public class RentalsService : IRentalsService
         var car = await _carsRepository.ReserveCar(carUid, true);
         var canceledRental = await _rentalsRepository.ProcessRent(username, rentalUid, "CANCELED");
         var canceledPayment = await _paymentsRepository.CancelAsync(paymentUid);
+    }
+
+    public async Task<bool> HealthCheckAsync()
+    {
+        var response = await _rentalsRepository.HealthCheckAsync();
+        return response;
     }
 }

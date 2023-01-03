@@ -1,11 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Net;
 using System.Net.Mime;
-using System.Net.Sockets;
 using APIGateway.Domain;
 using APIGateway.ModelsDTO;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using ModelsDTO.Rentals;
 using Swashbuckle.AspNetCore.Annotations;
 
@@ -85,30 +83,37 @@ namespace APIGateway.Controllers
         public async Task<IActionResult> BookCar([Required, FromHeader(Name = "X-User-Name")] string username,
             [FromBody] CreateRentalRequest request)
         {
-            try
+            if (!(await _rentalsService.HealthCheckAsync()))
             {
-                if (!ModelState.IsValid)
-                {
-                    return BadRequest(ModelState);
-                }
+                var response = new ExceptionResponse("Rentals service is unavailable!");
+                Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
+                return new ObjectResult(response);
+            }
 
-                var response = await _rentalsService.RentCar(username, request);
-                return Ok(response);
-            }
-            catch (HttpRequestException e) when (e.StatusCode == HttpStatusCode.NotFound)
-            {
-                return NotFound(e.Message);
-            }
-            catch (SocketException e)
-            {
-                _logger.LogError(e, "+RentalsAPIContoller: Service is unavailable!");
-                return Problem(statusCode: StatusCodes.Status503ServiceUnavailable);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying BookCar!");
-                throw;
-            }
+            return Ok();
+
+            // try
+            // {
+            //     if (!ModelState.IsValid)
+            //     {
+            //         return BadRequest(ModelState);
+            //     }
+            //
+            //     var response = await _rentalsService.RentCar(username, request);
+            //     return Ok(response);
+            // }
+            // catch (HttpRequestException e) when (e.StatusCode == HttpStatusCode.NotFound)
+            // {
+            //     return NotFound(e.Message);
+            // }
+            // catch (Exception e)
+            // {
+            //     _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying BookCar!");
+            //     //throw;
+            //     var response = new ExceptionResponse("Rentals service is unavailable!");
+            //     Response.StatusCode = StatusCodes.Status503ServiceUnavailable;
+            //     return new ObjectResult(response);
+            // }
         }
 
         /// <summary> Завершение аренды автомобиля </summary>
