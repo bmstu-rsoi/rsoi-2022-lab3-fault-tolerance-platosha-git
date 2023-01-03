@@ -113,6 +113,18 @@ public class RentalsService : IRentalsService
 
         return rental;
     }
+    
+    private RentalResponse AddEmptyPaymentInfo(RentalResponse rental)
+    {
+        rental.Payment = new PaymentInfo()
+        {
+            PaymentUid = Guid.Empty,
+            Status = String.Empty,
+            Price = 0
+        };
+
+        return rental;
+    }
 
     public async Task<List<RentalResponse>?> GetAllAsync(string username)
     {
@@ -145,6 +157,10 @@ public class RentalsService : IRentalsService
                 if (await _paymentsRepository.HealthCheckAsync())
                 {
                     await AddPaymentInfoAsync(rental.PaymentUid, response);
+                }
+                else
+                {
+                    AddEmptyPaymentInfo(response);
                 }
             }
         }
