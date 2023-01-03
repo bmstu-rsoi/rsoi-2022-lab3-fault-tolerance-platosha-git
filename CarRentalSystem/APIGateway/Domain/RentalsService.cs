@@ -1,4 +1,5 @@
 ﻿using System.Net;
+using System.Reflection;
 using System.Web;
 using APIGateway.ModelsDTO;
 using Microsoft.AspNetCore.Mvc;
@@ -100,6 +101,23 @@ public class RentalsService : IRentalsService
 
         return rental;
     }
+
+    private void InitEmptyPaymentInfo(object obj)
+    {
+        foreach (var prop in obj.GetType()
+                     .GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                     .Where(p => p.CanWrite))
+        {
+            var type = prop.PropertyType;
+            var constr = type.GetConstructor(Type.EmptyTypes); //find paramless const
+            if (type.IsClass && constr != null)
+            {
+                var propInst = Activator.CreateInstance(type);
+                prop.SetValue(obj, propInst, null);
+                InitEmptyPaymentInfo(propInst);
+            }
+        }
+    }
     
     private async Task<CreateRentalResponse> AddPaymentInfoAsync(Guid paymentUid, CreateRentalResponse rental)
     {
@@ -109,18 +127,6 @@ public class RentalsService : IRentalsService
             PaymentUid = payment.PaymentUid,
             Status = payment.Status,
             Price = payment.Price
-        };
-
-        return rental;
-    }
-    
-    private RentalResponse AddEmptyPaymentInfo(RentalResponse rental)
-    {
-        rental.Payment = new PaymentInfo()
-        {
-            PaymentUid = Guid.Empty,
-            Status = String.Empty,
-            Price = 0
         };
 
         return rental;
@@ -160,7 +166,8 @@ public class RentalsService : IRentalsService
                 }
                 else
                 {
-                    AddEmptyPaymentInfo(response);
+                    response.Payment = new PaymentInfo();
+                    InitEmptyPaymentInfo(response.Payment);
                 }
             }
         }
