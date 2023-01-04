@@ -146,7 +146,7 @@ namespace Rentals.Controllers
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RentalsDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> FinishRent(string username, Guid rentalUid, string status)
+        public async Task<IActionResult> FinishRental(string username, Guid rentalUid, string status)
         {
             try
             {
