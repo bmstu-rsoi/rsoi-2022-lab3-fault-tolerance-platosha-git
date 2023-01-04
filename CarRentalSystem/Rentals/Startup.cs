@@ -8,13 +8,6 @@ using Serilog;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 
-using System.Reflection;
-using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
-using Microsoft.OpenApi.Models;
-using Newtonsoft.Json.Converters;
-
 namespace Rentals
 {
     public class Startup
@@ -33,7 +26,7 @@ namespace Rentals
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddDbContextCheck<RentalContext>();
 
-            services.AddControllers();
+            services.AddSwaggerGenNewtonsoftSupport();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Rentals", Version = "v1"});
@@ -42,8 +35,9 @@ namespace Rentals
                 c.IncludeXmlComments(xmlPath);
                 
             });
-            services.AddSwaggerGenNewtonsoftSupport();
-
+            
+            services.AddControllers();
+            
             AddDbContext(services, Configuration);
             AddLogging(services, Configuration);
             
@@ -58,6 +52,7 @@ namespace Rentals
             {
                 app.UseDeveloperExceptionPage();
             }
+            
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rentals v1"));
 
