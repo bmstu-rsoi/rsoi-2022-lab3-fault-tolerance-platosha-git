@@ -23,14 +23,13 @@ namespace APIGateway.Controllers
             _logger = logger;
         }
 
-        /// <summary>Получить информацию о всех арендах пользователя</summary>
-        /// <param name="X-User-Name">Имя пользователя</param>
-        /// <response code="200">Информация обо всех арендах</response>
+        /// <summary> Получить информацию о всех арендах пользователя </summary>
+        /// <param name="X-User-Name"> Имя пользователя </param>
+        /// <response code="200"> Информация обо всех арендах </response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<RentalResponse>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllRentalsByUsername(
-            [Required, FromHeader(Name = "X-User-Name")] string username)
+        public async Task<IActionResult> GetAllRentalsByUsername([Required, FromHeader(Name = "X-User-Name")] string username)
         {
             try
             {
@@ -39,17 +38,17 @@ namespace APIGateway.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error occurred trying GetAllRentalsByUsername!");
+                _logger.LogError(e, "+RentalsAPI : Error while trying to GetAllRentalsByUsername");
                 throw;
             }
         }
 
-        /// <summary>Информация по конкретной аренде пользователя</summary>
-        /// <param name="rentalUid">UUID аренды</param>
-        /// <param name="X-User-Name">Имя пользователя</param>
-        /// <response code="200">Информация по конкретному бронированию</response>
-        /// <response code="404">Билет не найден</response>
-        [HttpGet("{rentalUid}")]
+        /// <summary> Информация по конкретной аренде пользователя </summary>
+        /// <param name="rentalUid"> UUID аренды </param>
+        /// <param name="X-User-Name"> Имя пользователя </param>
+        /// <response code="200"> Информация по конкретному бронированию </response>
+        /// <response code="404"> Билет не найден </response>
+        [HttpGet("{rentalUid:guid}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RentalResponse))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -67,7 +66,7 @@ namespace APIGateway.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error occurred trying GetRentalByRentalUid!");
+                _logger.LogError(e, "+RentalsAPI : Error while trying to GetRentalByRentalUid");
                 throw;
             }
         }
@@ -106,7 +105,7 @@ namespace APIGateway.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying BookCar!");
+                _logger.LogError(e, "+RentalsAPI : Error while trying to BookCar");
                 throw;
             }
         }
@@ -116,7 +115,7 @@ namespace APIGateway.Controllers
         /// <param name="X-User-Name"> Имя пользователя </param>
         /// <response code="204"> Аренда успешно завершена </response>
         /// <response code="404"> Аренда не найдена </response>
-        [HttpPost("{rentalUid}/finish")]
+        [HttpPost("{rentalUid:guid}/finish")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -134,7 +133,7 @@ namespace APIGateway.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying FinishBookCar!");
+                _logger.LogError(e, "+RentalsAPI : Error while trying to FinishBookCar");
                 throw;
             }
         }
@@ -144,7 +143,7 @@ namespace APIGateway.Controllers
         /// <param name="X-User-Name"> Имя пользователя </param>
         /// <response code="204"> Аренда успешно отменена </response>
         /// <response code="404"> Аренда не найдена </response>
-        [HttpDelete("{rentalUid}")]
+        [HttpDelete("{rentalUid:guid}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -162,7 +161,7 @@ namespace APIGateway.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsAPIContoller: Error occurred trying FinishBookCar!");
+                _logger.LogError(e, "+RentalsAPI : Error while trying to CancelBookCar");
                 throw;
             }
         }

@@ -18,8 +18,11 @@ namespace APIGateway.Controllers
             _carsRepository = carsRepository;
         }
 
-        /// <summary>Получить список всех доступных для бронирования автомобилей</summary>
-        /// <response code="200">Список доступных для бронирования автомобилей</response>
+        /// <summary> Получить список всех доступных для бронирования автомобилей </summary>
+        /// <param name="page"></param>
+        /// <param name="size"></param>
+        /// <param name="showAll"></param>
+        /// <response code="200"> Список доступных для бронирования автомобилей </response>
         [HttpGet]
         [SwaggerResponse(StatusCodes.Status200OK, type: typeof(PaginationCarResponse), 
             description: "Список доступных для бронирования автомобилей")]
