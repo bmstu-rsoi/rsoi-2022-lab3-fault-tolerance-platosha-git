@@ -8,7 +8,6 @@ using Payments.Controllers;
 using Serilog;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using ModelsDTO.Payments.Cancel;
 
 namespace Payments
 {
@@ -28,7 +27,7 @@ namespace Payments
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddDbContextCheck<PaymentContext>();
             
-            services.AddControllers();
+            services.AddSwaggerGenNewtonsoftSupport();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo {Title = "Payments", Version = "v1"});
@@ -37,11 +36,11 @@ namespace Payments
                 c.IncludeXmlComments(xmlPath);
                 
             });
-            services.AddSwaggerGenNewtonsoftSupport();
-
+            
+            services.AddControllers();
+            
             AddDbContext(services, Configuration);
             AddLogging(services, Configuration);
-            
             AddMassTransit(services, Configuration);
             
             services.AddScoped<IPaymentsRepository, PaymentsRepository>();
@@ -57,8 +56,6 @@ namespace Payments
             }
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Payments v1"));
-
-            //app.UseHttpsRedirection();
 
             app.UseRouting();
 
@@ -76,7 +73,7 @@ namespace Payments
         private static void AddDbContext(IServiceCollection services, IConfiguration config)
         {
             services.AddDbContext<PaymentContext>(opt => 
-                opt.UseNpgsql(config.GetConnectionString("Local")));
+                opt.UseNpgsql(config.GetConnectionString("Postgres")));
         }
         
         private static void AddLogging(IServiceCollection services, IConfiguration config)
@@ -96,7 +93,8 @@ namespace Payments
 
             services.AddMassTransit(cfg =>
             {
-                cfg.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter(configuration.GetValue<string>("EndpointPrefix"), false));
+                cfg.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter
+                    (configuration.GetValue<string>("EndpointPrefix"), false));
                 cfg.AddConsumer<PaymentConsumer>();
          
                 cfg.ConfigureHealthCheckOptions(x =>

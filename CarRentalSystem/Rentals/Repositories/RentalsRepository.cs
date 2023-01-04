@@ -84,7 +84,7 @@ namespace Rentals.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsRep : Error while trying to Add to Rentals");
+                _logger.LogError(e, "+RentalsRep : Error while trying to Add");
                 throw;
             }
         }
@@ -100,7 +100,7 @@ namespace Rentals.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsRep : Error while trying to Patch to Rentals");
+                _logger.LogError(e, "+RentalsRep : Error while trying to Patch");
                 throw;
             }
         }

@@ -21,11 +21,10 @@ namespace Payments.Repositories
                 var payment = await _db.Payments
                     .FirstOrDefaultAsync(x => x.PaymentUid == paymentUid);
                 return payment;
-
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error while trying to FindByUid");
+                _logger.LogError(e, "+PaymentRep : Error while trying to FindByUid");
                 throw;
             }
         }
@@ -47,7 +46,7 @@ namespace Payments.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error while trying to Add");
+                _logger.LogError(e, "+PaymentRep : Error while trying to Add");
                 throw;
             }
         }
@@ -61,7 +60,7 @@ namespace Payments.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+ Error while trying to Patch");
+                _logger.LogError(e, "+PaymentRep : Error while trying to Patch");
                 throw;
             }
         }
