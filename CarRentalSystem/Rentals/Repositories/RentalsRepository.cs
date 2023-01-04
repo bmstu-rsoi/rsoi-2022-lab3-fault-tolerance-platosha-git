@@ -27,7 +27,7 @@ namespace Rentals.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsRepository: Error while trying to FindAll");
+                _logger.LogError(e, "+RentalsRep : Error while trying to FindAll");
                 throw;
             }
         }
@@ -44,7 +44,7 @@ namespace Rentals.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsRepository: Error while trying to FindByName");
+                _logger.LogError(e, "+RentalsRep : Error while trying to FindByName");
                 throw;
             }
         }
@@ -60,7 +60,7 @@ namespace Rentals.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsRepository: Error while trying to FindByRentalUid");
+                _logger.LogError(e, "+RentalsRep : Error while trying to FindByRentalUid");
                 throw;
             }
         }
@@ -69,7 +69,8 @@ namespace Rentals.Repositories
         {
             try
             {
-                obj.Id = _db.Rentals.Count() + 1;
+                var id = _db.Rentals.Count() + 1;
+                obj.Id = id;
 
                 if (obj.RentalUid == default)
                     obj.RentalUid = Guid.NewGuid();
@@ -83,7 +84,7 @@ namespace Rentals.Repositories
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsRepository: Error trying to Add to Rentals");
+                _logger.LogError(e, "+RentalsRep : Error while trying to Add to Rentals");
                 throw;
             }
         }
@@ -94,10 +95,12 @@ namespace Rentals.Repositories
             {
                 _db.Rentals.Update(obj);
                 await _db.SaveChangesAsync();
+            
+                _logger.LogInformation("+RentalsRep : Rental {Number} was patched at Rentals", obj.Id);
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsRepository: Error trying to Patch to Rentals");
+                _logger.LogError(e, "+RentalsRep : Error while trying to Patch to Rentals");
                 throw;
             }
         }

@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Net;
 using Microsoft.AspNetCore.Mvc;
+using ModelsDTO.Cars;
 using Rentals.ModelsDB;
 using ModelsDTO.Rentals;
 
@@ -39,7 +40,7 @@ namespace Rentals.Controllers
         {
             if (rental == null) return null;
             
-            var rentalDTO = new RentalsDTO()
+            RentalsDTO rentalDTO = new RentalsDTO()
             {
                 RentalUid = rental.RentalUid,
                 Username = rental.Username,
@@ -55,19 +56,19 @@ namespace Rentals.Controllers
 
         private List<RentalsDTO> ListRentalsDTO(List<Rental> lRentals)
         {
-            var lRentalsDTO = new List<RentalsDTO>();
+            List<RentalsDTO> lRentalsDTO = new List<RentalsDTO>();
             foreach (var rental in lRentals)
             {
-                var rentalDTO = InitRentalsDTO(rental);
+                RentalsDTO rentalDTO = InitRentalsDTO(rental);
                 lRentalsDTO.Add(rentalDTO);
             }
 
             return lRentalsDTO;
         }
 
-        /// <summary> Получить информацию о всех арендах пользователя </summary>
+        /// <summary>Получить информацию о всех арендах пользователя</summary>
         /// <param name="X-User-Name"> Имя пользователя </param>
-        /// <returns> Информация обо всех арендах </returns>
+        /// <returns>Информация обо всех арендах</returns>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<RentalsDTO>))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -81,20 +82,18 @@ namespace Rentals.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsAPI: Error while trying to GetRentalsByUsername");
+                _logger.LogError(e, "+ Error occurred trying GetRentalsByUsername!");
                 throw;
             }
         }
-        
-        /// <summary> Информация по конкретной аренде пользователя </summary>
-        /// <param name="rentalUid"> UUID аренды </param>
-        /// <param name="X-User-Name"> Имя пользователя </param>
-        /// <returns> Информация по конкретному бронированию </returns>
+
+        // Glen
+        // 8b33afd0-9850-41c8-8325-32b5ea91759c
         [HttpGet("{rentalUid:guid}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RentalsDTO))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetRentalByRentalUid([Required, FromQuery(Name = "X-User-Name")] string username,
+        public async Task<IActionResult> GetRentalByUid([Required, FromQuery(Name = "X-User-Name")] string username,
             Guid rentalUid)
         {
             try
@@ -109,64 +108,34 @@ namespace Rentals.Controllers
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "+RentalsAPI: Error while trying GetRentalByRentalUid");
+                _logger.LogError(e, "+ Error occurred trying GetRentalByRentalUid!");
                 throw;
             }
         }
 
-        /// <summary> Забронировать автомобиль </summary>
-        /// <param name="X-User-Name"> Имя пользователя </param>
-        /// <returns> Информация о бронировании авто </returns>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(RentalsDTO))]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> CreateRental([FromBody] RentalsDTO rentalDTO)
         {
-            try
-            {
-                var rentalToAdd = GetRentalFromDTO(rentalDTO);
-                var addedRental = await _rentalsController.AddRental(rentalToAdd);
+            var rentalToAdd = GetRentalFromDTO(rentalDTO);
+            var addedRental = await _rentalsController.AddRental(rentalToAdd);
 
-                var response = InitRentalsDTO(addedRental);
-                return Created($"/api/v1/{addedRental.Id}", response);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "+RentalsAPI: Error while trying CreateRental");
-                throw;
-            }
-
+            var response = InitRentalsDTO(addedRental);
+            return Created($"/api/v1/{addedRental.Id}", response);
         }
         
-        /// <summary> Завершение аренды автомобиля </summary>
-        /// <param name="rentalUid"> UUID аренды </param>
-        /// <param name="X-User-Name"> Имя пользователя </param>
-        /// <returns> Аренда успешно завершена </returns>
-        [HttpPatch("{username}/{rentalUid:guid}/{status}")]
+        [HttpPatch("{username}/{rentalUid}/{status}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RentalsDTO))]
-        [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> FinishRental(string username, Guid rentalUid, string status)
+        public async Task<IActionResult> FinishRent(string username, Guid rentalUid, string status)
         {
-            try
-            {
-                var rental = await _rentalsController.GetRentalByRentalUid(username, rentalUid);
-                rental.Status = status;
-                await _rentalsController.FinishRental(rental);
+            var rental = await _rentalsController.GetRentalByRentalUid(username, rentalUid);
+            rental.Status = status;
+            await _rentalsController.FinishRent(rental);
 
-                var response = InitRentalsDTO(rental);
-                return Ok(response);
-            }
-            catch (HttpRequestException e) when (e.StatusCode == HttpStatusCode.NotFound)
-            {
-                return NotFound(username);
-            }
-            catch (Exception e)
-            {
-                _logger.LogError(e, "+RentalsAPI: Error while trying FinishRental");
-                throw;
-            }
-            
+            var response = InitRentalsDTO(rental);
+            return Ok(response);
         }
     }
 }
